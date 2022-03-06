@@ -140,12 +140,12 @@ class Board {
       const img = document.querySelector<HTMLImageElement>('.canvas-image')
       if (img) {
         img.src = this.el.toDataURL('image/jpeg')
-        return this
+      } else {
+        const image = document.createElement('img')!
+        image.classList.add('canvas-image')
+        image.src = this.el.toDataURL('image/jpeg')
+        this.btns.insertAdjacentElement('afterend', image)
       }
-      const image = document.createElement('img')!
-      image.classList.add('canvas-image')
-      image.src = this.el.toDataURL('image/jpeg')
-      this.btns.insertAdjacentElement('afterend', image)
     })
     this.btns.insertAdjacentElement('beforeend', btn)
     return this
