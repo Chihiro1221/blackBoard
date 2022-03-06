@@ -7,7 +7,8 @@ class Board {
     private app = el.getContext('2d')!,
     private btns: HTMLDivElement = document.createElement('div'),
     private bgColor = '#000',
-    private lineColor = '#fff'
+    private lineColor = '#fff',
+    private colors = ['#ecf0f1', '#1abc9c', '#3498db', '#9b59b6', '#2c3e50']
   ) {
     this.initCanvas()
     this.bindEvnet()
@@ -17,7 +18,7 @@ class Board {
   private initCanvas() {
     this.app.fillStyle = this.bgColor
     this.app.fillRect(0, 0, this.width, this.height)
-    this.btns.style.cssText = 'margin:10px'
+    this.btns.classList.add('btns')
     this.el.insertAdjacentElement('afterend', this.btns)
   }
 
@@ -26,6 +27,7 @@ class Board {
     const btn = document.createElement('button')
     btn.innerText = '清屏'
     btn.addEventListener('click', () => {
+      this.app.fillStyle = '#000'
       this.app.fillRect(0, 0, this.width, this.height)
     })
     this.btns.insertAdjacentElement('beforeend', btn)
@@ -40,6 +42,26 @@ class Board {
     this.app.fillRect(0, 0, this.width, this.height)
 
     return this
+  }
+
+  // 设置画笔颜色
+  public setLineColor() {
+    const container = document.createElement('div')
+    container.classList.add('colors-container')
+    container.innerText = '画笔颜色:'
+    // 渲染按钮
+    this.colors.forEach(color => {
+      const div = document.createElement('div')
+      div.classList.add('color')
+      div.style.backgroundColor = color
+      container.insertAdjacentElement('beforeend', div)
+
+      div.addEventListener('click', () => {
+        this.lineColor = color
+      })
+    })
+
+    this.btns.insertAdjacentElement('beforeend', container)
   }
 
   // 绑定事件
@@ -63,4 +85,4 @@ class Board {
   }
 }
 
-const instance = new Board().clear().setBgColor('#9b59b6')
+const instance = new Board().clear().setBgColor('#9b59b6').setLineColor()

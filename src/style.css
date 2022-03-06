@@ -12,3 +12,25 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+.colors-container {
+  display: flex;
+  font-size: 14px;
+  color: white;
+  align-items: center;
+  gap: 2px;
+}
+.color {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
